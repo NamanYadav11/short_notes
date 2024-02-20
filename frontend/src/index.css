@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components{
+    .hover_effect{
+      @apply rounded-full hover:bg-stone-100 h-10 w-10 flex justify-center items-center cursor-pointer
+    }
+}

@@ -6,11 +6,14 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { clearData } from '../Redux/slice/todos/allTodos';
 
 
 export default function Navbar() {
   const [name, setName] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const resName = localStorage.getItem('name')
 
@@ -22,6 +25,7 @@ export default function Navbar() {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('name')
     setName(null)
+    dispatch(clearData())
   }
 
   return (

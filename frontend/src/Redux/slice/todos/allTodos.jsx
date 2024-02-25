@@ -40,11 +40,11 @@ export const todoSlice=createSlice({
             state.data = newData;
         },
 
-        clearData: (state, action) =>{
-            state.data = action.payload
+        clearData: (state) =>{
+            state.data = null
         }
     }
 })
 
-export const {add, remove, setData}=todoSlice.actions
+export const {add, remove, setData,clearData}=todoSlice.actions
 export default todoSlice.reducer

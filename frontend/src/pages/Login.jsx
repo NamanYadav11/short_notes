@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
-import { baseUrl} from "../../config";
+import { baseUrl, headerToken} from "../../config";
+import { useDispatch } from "react-redux";
+import { setData } from "../Redux/slice/todos/allTodos";
 
 
 function Login() {
@@ -10,6 +12,7 @@ function Login() {
     username:"",
     password:""
   })
+  const dispatch =useDispatch();
 
   const handleChange = (event)=>{
     const{value,name}=event.target
@@ -30,6 +33,20 @@ function Login() {
     })
   }
 
+  const getUserdata = () => {
+    axios.get(`${baseUrl}/user/data`,{
+      headers:{
+        Authorization:`Bearer ${headerToken}`
+      }
+    })
+    .then((res) => {
+      dispatch(setData(res.data.todos));
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
   const handleClick = () =>{
     axios.post(`${baseUrl}/user/signin`,{
       username: user.username,
@@ -41,6 +58,7 @@ function Login() {
       const name = res.data.name
       localStorage.setItem("jwtToken",jwtToken)
       localStorage.setItem("name",name)
+      getUserdata
       navigate("/")
     })
 

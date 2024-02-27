@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
-import { baseUrl, headerToken} from "../../config";
+import { baseUrl} from "../../config";
 import { useDispatch } from "react-redux";
 import { setData } from "../Redux/slice/todos/allTodos";
 
 
 function Login() {
+  const headerToken = localStorage.getItem('jwtToken')
   const navigate = useNavigate();
   const [user,setUser]=useState({
     username:"",
@@ -33,19 +34,6 @@ function Login() {
     })
   }
 
-  const getUserdata = () => {
-    axios.get(`${baseUrl}/user/data`,{
-      headers:{
-        Authorization:`Bearer ${headerToken}`
-      }
-    })
-    .then((res) => {
-      dispatch(setData(res.data.todos));
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-  }
 
   const handleClick = () =>{
     axios.post(`${baseUrl}/user/signin`,{
@@ -53,13 +41,13 @@ function Login() {
       password:user.password
     })
 
-    .then((res)=>{
+    .then(async(res)=>{
       const jwtToken = res.data.token
       const name = res.data.name
-      localStorage.setItem("jwtToken",jwtToken)
-      localStorage.setItem("name",name)
-      getUserdata
+      await localStorage.setItem("jwtToken",jwtToken)
+      await localStorage.setItem("name",name)
       navigate("/")
+      console.log(localStorage.getItem("jwtToken"))
     })
 
     .catch((err)=>{

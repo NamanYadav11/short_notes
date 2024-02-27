@@ -129,6 +129,7 @@ router.post("/addtodo",userMiddleware,async(req, res) => {
 })
 
 router.get('/todos',userMiddleware ,async(req,res)=>{
+    console.log(req.headers)
     const username = req.username;
 
     const user = await User.findOne({ username: username})

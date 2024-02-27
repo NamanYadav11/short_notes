@@ -7,7 +7,7 @@ import {useEffect } from 'react';
 import axios from "axios";
 import {useDispatch,useSelector} from 'react-redux'
 import { setData } from './Redux/slice/todos/allTodos';
-import { baseUrl, headerToken } from '../config';
+import { baseUrl } from '../config';
 
 
 
@@ -17,9 +17,10 @@ import { baseUrl, headerToken } from '../config';
 
 function Home() { 
   const dispatch = useDispatch();
+  const headerToken = localStorage.getItem('jwtToken')
   const name = localStorage.getItem('name')
 
-
+ console.log(headerToken)
   useEffect(()=>{
     if (name) {
       axios.get(`${baseUrl}/user/todos`, {
@@ -28,6 +29,7 @@ function Home() {
           }
         })
         .then((res) => {
+          console.log(res)
           dispatch(setData(res.data.todos));
         })
         .catch((err) => {
@@ -57,7 +59,7 @@ function Home() {
         ))
       ) : (
         // Handle the case where todos is not an array
-        console.log("Array nahi hai")
+        <p className='text-center w-screen mt-20 text-gray-400'>No todos available</p>
       )} 
  
     </main>

@@ -7,13 +7,14 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { add } from '../Redux/slice/todos/allTodos';
-import { baseUrl, headerToken} from '../../config';
+import { baseUrl} from '../../config';
 import { useNavigate } from 'react-router-dom';
 
 
 
 function AddTodo() {
   const navigate=useNavigate()
+  const headerToken = localStorage.getItem('jwtToken')
 
   const dispatch = useDispatch()
   const name = localStorage.getItem('name')

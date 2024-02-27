@@ -8,11 +8,12 @@ import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { remove } from '../Redux/slice/todos/allTodos';
-import { baseUrl, headerToken } from '../../config';
+import { baseUrl} from '../../config';
 
 function Todos({_id,title,description}) {
 
   const dispatch = useDispatch();
+  const headerToken = localStorage.getItem('jwtToken')
 
   const handleClick = () => {
     axios.delete(

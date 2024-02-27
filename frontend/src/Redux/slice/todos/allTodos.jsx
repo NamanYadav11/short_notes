@@ -41,7 +41,7 @@ export const todoSlice=createSlice({
         },
 
         clearData: (state) =>{
-            state.data = null
+            state.data = []
         }
     }
 })

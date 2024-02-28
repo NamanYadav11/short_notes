@@ -20,7 +20,6 @@ function Home() {
   const headerToken = localStorage.getItem('jwtToken')
   const name = localStorage.getItem('name')
 
- console.log(headerToken)
   useEffect(()=>{
     if (name) {
       axios.get(`${baseUrl}/user/todos`, {

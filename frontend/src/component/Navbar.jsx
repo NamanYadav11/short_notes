@@ -24,6 +24,7 @@ export default function Navbar() {
   const logout = ()=>{
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('name')
+    localStorage.removeItem('msg')
     setName(null)
     dispatch(clearData())
   }

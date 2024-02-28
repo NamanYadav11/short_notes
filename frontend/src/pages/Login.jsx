@@ -2,18 +2,17 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { baseUrl} from "../../config";
-import { useDispatch } from "react-redux";
-import { setData } from "../Redux/slice/todos/allTodos";
+
 
 
 function Login() {
-  const headerToken = localStorage.getItem('jwtToken')
+  const msg = localStorage.getItem("msg")
   const navigate = useNavigate();
   const [user,setUser]=useState({
     username:"",
     password:""
   })
-  const dispatch =useDispatch();
+
 
   const handleChange = (event)=>{
     const{value,name}=event.target
@@ -41,13 +40,14 @@ function Login() {
       password:user.password
     })
 
-    .then(async(res)=>{
+    .then((res)=>{
       const jwtToken = res.data.token
       const name = res.data.name
-      await localStorage.setItem("jwtToken",jwtToken)
-      await localStorage.setItem("name",name)
+      const msg = res.data.msg
+      localStorage.setItem("msg",msg)
+      localStorage.setItem("jwtToken",jwtToken)
+      localStorage.setItem("name",name)
       navigate("/")
-      console.log(localStorage.getItem("jwtToken"))
     })
 
     .catch((err)=>{
@@ -78,9 +78,11 @@ function Login() {
         <input onChange={handleChange} 
         name="password" 
         className="border shadow-md p-1 rounded-md" placeholder="Password" 
-        type="text" 
+        type="password" 
         value={user.password} />
       </div>
+
+      <div className="text-red-500">{msg}</div>
 
       <div className="flex justify-between">
 

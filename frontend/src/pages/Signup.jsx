@@ -78,7 +78,8 @@ function Signup() {
       <div className="flex flex-col flex-grow ">
         <input onChange={handleChange} 
         name="username" 
-        className="border shadow-md p-1 rounded-md" placeholder="Username" 
+        className="border shadow-md p-1 rounded-md" 
+        placeholder="Username" 
         type="text" 
         value={user.username} />
       </div>
@@ -86,8 +87,9 @@ function Signup() {
       <div className="flex flex-col flex-grow ">
         <input onChange={handleChange} 
         name="password" 
-        className="border shadow-md p-1 rounded-md" placeholder="Password" 
-        type="text" 
+        className="border shadow-md p-1 rounded-md" 
+        placeholder="Password" 
+        type="password" 
         value={user.password} />
       </div>
 

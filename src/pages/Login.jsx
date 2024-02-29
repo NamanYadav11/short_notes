@@ -47,7 +47,7 @@ function Login() {
       localStorage.setItem("msg",msg)
       localStorage.setItem("jwtToken",jwtToken)
       localStorage.setItem("name",name)
-      navigate("/")
+      navigate("/home")
     })
 
     .catch((err)=>{
@@ -100,7 +100,7 @@ function Login() {
 
       <h1>
         Don&apos;t have an account <span onClick={()=>{
-            navigate('/signup')
+            navigate('/')
           }} className="text-[#4398e1] font-semibold cursor-pointer">SignUp?</span>
         </h1>
     </div>

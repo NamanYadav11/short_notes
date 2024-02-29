@@ -44,7 +44,7 @@ export default function Navbar() {
           <div  className='hover_effect'><DragHandleIcon/></div>
           <div  className='hover_effect'><SettingsIcon/></div>
           <div onClick={()=>{
-            name? logout() : navigate("/signup")
+            name? logout() : navigate("/")
           }}  className='hover_effect'>
             {(name)? name: <AccountCircleIcon/>}
             

@@ -8,6 +8,7 @@ import axios from "axios";
 import {useDispatch,useSelector} from 'react-redux'
 import { setData } from './Redux/slice/todos/allTodos';
 import { baseUrl } from '../config';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -16,9 +17,14 @@ import { baseUrl } from '../config';
 
 
 function Home() { 
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const headerToken = localStorage.getItem('jwtToken')
   const name = localStorage.getItem('name')
+
+  if(!name){
+    navigate("/")
+  }
 
   useEffect(()=>{
     if (name) {

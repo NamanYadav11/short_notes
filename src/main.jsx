@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import { store } from './Redux/store.jsx'
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import Signup from './pages/Signup.jsx'
-import Login from './pages/LogIn.jsx'
+import Login from './pages/Login.jsx'
 
 
 

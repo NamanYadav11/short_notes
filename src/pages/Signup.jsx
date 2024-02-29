@@ -52,7 +52,7 @@ function Signup() {
       const name = res.data.name
       localStorage.setItem("jwtToken",jwtToken)
       localStorage.setItem("name",name)
-      navigate("/")
+      navigate("/home")
     })
 
     .catch((err)=>{
